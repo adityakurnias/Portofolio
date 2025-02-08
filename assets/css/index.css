@@ -1,3 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+    /* Color */
+    --color-primary: #2C3930;
+    --color-secondary: #3F4F44;
+    --color-tertiary: #A27B5C;
+    --color-quaternary: #9DC08B;
+    --color-text-primary: #DCD7C9;
+    
+    /* Font */
+    --default-font-family: 'Fira Code', monospace;
+    --font-fira: 'Fira Code', monospace;
+}
