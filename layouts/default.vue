@@ -1,5 +1,5 @@
 <template>
-  <div class="font-fira">
+  <div class=" w-full min-h-screen bg-primary">
     <navigation-bar />
     <slot />
     <div class="cursor-follower"></div>

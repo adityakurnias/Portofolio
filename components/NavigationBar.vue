@@ -4,13 +4,13 @@
       <li
         class="text-center transition-all leading-4 relative before:transition-all before:ease-in-out hover:leading-6 hover:before:h-full before:content-[''] before:w-5 before:h-0 before:bg-text-primary before:absolute before:-z-10 before:-right-4"
       >
-        <NuxtLink to="/" class="cursor-pointer">Bio</NuxtLink>
+        <NuxtLink to="/" class="">Bio</NuxtLink>
       </li>
       <span>•</span>
       <li
         class="text-center transition-all leading-4 relative before:transition-all before:ease-in-out hover:leading-6 hover:before:h-full before:content-[''] before:w-5 before:h-0 before:bg-text-primary before:absolute before:-z-10 before:-right-4"
       >
-        <NuxtLink to="/projects" class="cursor-pointer" prefetch-on="visibility"
+        <NuxtLink to="/projects" class="" prefetch-on="visibility"
           >Projects</NuxtLink
         >
       </li>
@@ -28,10 +28,11 @@
   </nav>
 </template>
 
-<script setup lang="ts"></script>
+<script lang="ts" setup></script>
 
 <style scoped>
 @reference "tailwindcss";
+
 li:has(.router-link-active) {
   @apply before:h-full leading-6;
 }

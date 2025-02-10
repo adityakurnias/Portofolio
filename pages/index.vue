@@ -1,38 +1,39 @@
 <template>
-  <main class="w-screen min-h-screen bg-primary">
-    <section class="w-full h-full">
-      <div id="hero" class="h-32 overflow-hidden">
-        <h1 class="text-text-primary font-bold text-9xl menu-item-active">
-          Hello World
-        </h1>
-        <h2 class="text-text-primary font-bold text-9xl menu-item">
-          I'm Aditya
-        </h2>
+  <main class="w-full bg-primary">
+    <section class=" relativecontainer section-1 w-full h-screen">
+      <div class="parent absolute top-0 left-0 z-20">
+        <div class="wrap">
+          <h1 class="text-text-primary font-bold text-9xl hello">Hello World</h1>
+        </div>
       </div>
+    </section>
+    <section class="section-2 w-full h-screen bg-quaternary">
     </section>
   </main>
 </template>
 
 <script lang="ts" setup>
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
 onMounted(() => {
-  const menuItems = document.querySelectorAll("#hero");
-  menuItems.forEach((item) => {
-    item.addEventListener("mouseover", () => {
-      const hoverElement = item.querySelector(".menu-item-active");
-      const el = item.querySelector(".menu-item");
-      gsap.to(hoverElement, { yPercent: -70, duration: 0.3, ease: "sine.in" });
-      gsap.to(el, { yPercent: -100, duration: 0.3, ease: "sine.out" });
-    });
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".section-1",
+      start: "top",
+      end: "bottom",
+      scrub: true,
+      markers: true
+    }
   });
-  menuItems.forEach((item) => {
-    item.addEventListener("mouseout", () => {
-      const hoverElement = item.querySelector(".menu-item-active");
-      const el = item.querySelector(".menu-item");
-      gsap.to(hoverElement, { yPercent: 100, duration: 0.3, ease: "sine.out" });
-      gsap.to(el, { yPercent: 0, duration: 0.3, ease: "sine.in" });
-    });
-  });
+  tl.to(".hello", { 
+    duration: 1,
+    y: 800
+   })
 });
 </script>
 
-<style></style>
+<style scoped>
+
+</style>
