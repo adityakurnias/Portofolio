@@ -1,6 +1,6 @@
 <template>
   <main class="w-full bg-primary">
-    <section class=" relativecontainer section-1 w-full h-screen">
+    <section class="section-1 relative w-full  h-screen">
       <div class="parent absolute top-0 left-0 z-20">
         <div class="wrap">
           <h1 class="text-text-primary font-bold text-9xl hello">Hello World</h1>
@@ -21,10 +21,10 @@ onMounted(() => {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: ".section-1",
+      endTrigger: ".section-2",
       start: "top",
       end: "bottom",
       scrub: true,
-      markers: true
     }
   });
   tl.to(".hello", { 

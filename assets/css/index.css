@@ -11,10 +11,11 @@
   /* Font */
   --default-font-family: "Fira Code", monospace;
   --font-fira: "Fira Code", monospace;
+
 }
 
 * {
-  cursor: none;
+  /* cursor: none; */
   scrollbar-width: none;
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class=" w-full min-h-screen bg-primary">
+  <div class=" w-full min-h-screen bg-secondary">
     <navigation-bar />
     <slot />
     <div class="cursor-follower"></div>
@@ -54,5 +54,15 @@ onMounted(() => {
   z-index: 10000;
   user-select: none;
   pointer-events: none;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
 }
 </style>
