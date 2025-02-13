@@ -11,10 +11,13 @@ export default defineNuxtConfig({
     '/contact': { prerender: true },
   },
 
-  css: ["@/assets/css/index.css"],
+  css: ["assets/css/index.css"],
 
   app: {
     head: {
+      htmlAttrs: {
+        lang: "en"
+      },
       title: "Aditya Kurnia Saputra | Portfolio",
       meta: [
         { charset: "utf-8" },
