@@ -4,12 +4,16 @@
             <CommonTopBar />
         </header>
 
-        <section>
+        <section id="home">
             <SectionHomepage />
         </section>
         
-        <section>
+        <section id="about">
             <SectionAbout />
+        </section>
+        
+        <section class="h-screen">
+            a
         </section>
     </main>
 </template>

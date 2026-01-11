@@ -35,7 +35,8 @@
                     </h1>
                     <div class="hero-btn opacity-0 mt-5 pointer-events-auto w-fit">
                         <a
-                            href="#"
+                            href="#about"
+                            @click="scrollToSection($event, '#about')"
                             class="group flex items-center gap-4 text-sm text-neutral-200 font-bold tracking-widest uppercase"
                         >
                             <span

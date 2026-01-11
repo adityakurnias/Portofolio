@@ -6,13 +6,13 @@
       </a>
     </div>
     <div class="hidden text-neutral-200 md:flex gap-8 text-sm font-medium opacity-60">
-      <a href="#" class="hover-rotate-text inline-block relative overflow-hidden hover:opacity-100 transition">
+      <a href="#about" @click="scrollToSection($event, '#about')" class="hover-rotate-text inline-block relative overflow-hidden hover:opacity-100 transition">
         <span>About</span>
       </a>
-      <a href="#" class="hover-rotate-text inline-block relative overflow-hidden hover:opacity-100 transition">
+      <a href="#" @click="scrollToSection($event, '#work')" class="hover-rotate-text inline-block relative overflow-hidden hover:opacity-100 transition">
         <span>Work</span>
       </a>
-      <a href="#" class="hover-rotate-text inline-block relative overflow-hidden hover:opacity-100 transition">
+      <a href="#" @click="scrollToSection($event, '#contact')" class="hover-rotate-text inline-block relative overflow-hidden hover:opacity-100 transition">
         <span>Contact</span>
       </a>
     </div>
@@ -23,7 +23,6 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted } from 'vue';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 
