@@ -13,7 +13,11 @@
         </section>
         
         <section class="h-screen">
-            a
+            <SectionWork />
+        </section>
+        
+        <section class="h-screen ">
+            
         </section>
     </main>
 </template>

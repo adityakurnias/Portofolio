@@ -1,0 +1,32 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "title": "Project 1",
+      "description": "Description of Project 1",
+      "image": "./Projects/evote.jpg",
+      "url": "https://example.com/project1"
+    },
+    {
+      "id": "2",
+      "title": "Project 2",
+      "description": "Description of Project 2",
+      "image": "./Projects/evote.jpg",
+      "url": "https://example.com/project2"
+    },
+    {
+      "id": "3",
+      "title": "Project 3",
+      "description": "Description of Project 3",
+      "image": "./Projects/evote.jpg",
+      "url": "https://example.com/project3"
+    },
+    {
+      "id": "4",
+      "title": "Project 4",
+      "description": "Description of Project 4",
+      "image": "./Projects/evote.jpg",
+      "url": "https://example.com/project4"
+    }
+  ]
+}

@@ -70,7 +70,7 @@ body {
 
 /* Custom selection color */
 ::selection {
-    background: #ffab40;
-    color: white;
+    background: whitesmoke;
+    color: black;
 }
 </style>
