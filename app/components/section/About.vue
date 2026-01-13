@@ -1,55 +1,97 @@
 <template>
     <div
-        class="relative min-h-screen overflow-hidden bg-black text-neutral-200"
+        class="relative w-full text-neutral-200 overflow-x-hidden selection:bg-white selection:text-black"
     >
         <div
-            ref="mainContainer"
-            class="grid grid-cols-2 items-center px-16 h-screen"
-        >
-            <h2 class="title text-[10rem] font-bold leading-none">
-                <span class="block">
-                    <span
-                        v-for="(char, i) in 'Who'"
-                        :key="i"
-                        class="reveal-char inline-block"
-                        >{{ char }}</span
-                    >
-                </span>
-                <span
-                    v-for="(char, i) in ' I Am'"
-                    :key="i"
-                    class="reveal-char inline-block"
-                >
-                    {{ char === " " ? "\u00A0" : char }}
-                </span>
-            </h2>
+            class="fixed inset-0 z-50 pointer-events-none opacity-5 mix-blend-overlay"
+            style="
+                background-image: url(&quot;https://grainy-gradients.vercel.app/noise.svg&quot;);
+            "
+        ></div>
 
-            <div class="content px-10 flex flex-col justify-center space-y-8">
-                <p class="reveal-content font-medium text-base">
-                    I’m a web developer who likes to learn by building and
-                    figuring things out as I go. I enjoy working with people,
-                    chatting through ideas, and slowly shaping simple thoughts
-                    into real, working websites. For me, the process matters
-                    just as much as the result—experimenting, fixing things, and
-                    learning from mistakes along the way. Every project, big or
-                    small, is a chance for me to grow and improve. I prefer
-                    keeping things simple and straightforward, with clear
-                    communication and a comfortable working flow, so ideas can
-                    turn into something real without feeling complicated or
-                    overwhelming.
-                </p>
-                <div
-                    class="more-btn opacity-0 mt-5 translate-y-6 pointer-events-auto w-fit"
-                >
-                    <NuxtLink
-                        to="/about"
-                        class="group flex items-center gap-4 text-sm text-neutral-200 font-bold tracking-widest uppercase"
+        <div
+            ref="mainContainer"
+            class="relative min-h-screen flex flex-col justify-center py-20"
+        >
+            <div
+                class="container mx-auto px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-8 items-center relative"
+            >
+                <div class="lg:col-span-7 z-20 relative mix-blend-difference">
+                    <div
+                        class="text-xs font-mono mb-6 tracking-[0.2em] text-neutral-400 reveal-meta"
                     >
-                        <span
-                            class="w-12 h-px bg-white group-hover:w-28 duration-500 ease-in-out transition-all"
-                        ></span>
-                        Discover More
-                    </NuxtLink>
+                        01 — INTRODUCTION
+                    </div>
+
+                    <h2
+                        class="title text-[11vw] lg:text-[9rem] font-bold leading-[0.85] tracking-tighter"
+                    >
+                        <span class="block">
+                            <span
+                                v-for="(char, i) in 'Who'"
+                                :key="i"
+                                class="reveal-char inline-block"
+                            >
+                                {{ char }}
+                            </span>
+                        </span>
+                        <span class="block ml-[10%] lg:ml-[15%]">
+                            <span
+                                v-for="(char, i) in 'I Am'"
+                                :key="i"
+                                class="reveal-char inline-block"
+                            >
+                                {{ char === " " ? "\u00A0" : char }}
+                            </span>
+                        </span>
+                    </h2>
+
+                    <div class="mt-16 lg:max-w-md ml-auto lg:mr-10">
+                        <p
+                            class="reveal-content font-light text-base leading-relaxed text-neutral-300/90"
+                        >
+                            I’m a web developer who likes to learn by building
+                            and figuring things out as I go. I enjoy working
+                            with people, chatting through ideas, and slowly
+                            shaping simple thoughts into real, working websites.
+                        </p>
+
+                        <div class="more-btn opacity-0 mt-8">
+                            <NuxtLink
+                                to="/about"
+                                class="group inline-flex items-center gap-4 text-xs font-bold tracking-widest uppercase hover:text-white transition-colors"
+                            >
+                                <div
+                                    class="relative overflow-hidden w-12 h-px bg-neutral-600 group-hover:bg-white transition-colors duration-300"
+                                >
+                                    <span
+                                        class="absolute top-0 left-0 w-full h-full bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"
+                                    ></span>
+                                </div>
+                                Discover More
+                            </NuxtLink>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="lg:col-span-5 h-[50vh] lg:h-[80vh] w-full relative z-10 lg:-ml-20"
+                >
+                    <div
+                        class="image-mask w-full h-full overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-700 ease-out"
+                    >
+                        <img
+                            ref="profileImage"
+                            src="/Images/Self.jpg"
+                            alt="Portrait"
+                            class="w-full h-[120%] object-cover object-center will-change-transform"
+                        />
+                    </div>
+                    <span
+                        class="absolute -bottom-8 right-0 font-mono text-xs text-neutral-500 reveal-meta"
+                    >
+                        Aditya Kurnia Saputra
+                    </span>
                 </div>
             </div>
         </div>
@@ -64,78 +106,122 @@ import { SplitText } from "gsap/SplitText";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const mainContainer = ref<HTMLElement | null>(null);
+const profileImage = ref<HTMLElement | null>(null);
 let ctx: gsap.Context;
 
 onMounted(() => {
-    ScrollTrigger.refresh();
+    if (!mainContainer.value) return;
 
     ctx = gsap.context(() => {
-        gsap.from(".reveal-char", {
-            x: -50,
-            filter: "blur(10px)",
-            opacity: 0,
-            stagger: 0.05,
-            scrollTrigger: {
-                trigger: ".title",
-                start: "top 80%",
-                end: "top 20%",
-                scrub: 1.5,
-            },
-        });
-
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: mainContainer.value,
                 start: "top top",
-                end: "+=200%",
+                end: "+=150%",
                 pin: true,
                 scrub: 1,
             },
         });
 
+        gsap.set(".image-mask", {
+            clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
+            filter: "blur(10px)",
+        });
+        gsap.set(".reveal-char", {
+            y: 80,
+            filter: "blur(10px)",
+            opacity: 0,
+        });
+
+        const contentTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: mainContainer.value,
+                start: "top 75%",
+                toggleActions: "play none none reverse",
+            },
+        });
+
+        contentTl
+            .to(".image-mask", {
+                clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+                duration: 1.5,
+                ease: "power4.inOut",
+                filter: "blur(0px)",
+            })
+            .to(
+                ".reveal-char",
+                {
+                    y: 0,
+                    stagger: 0.05,
+                    duration: 1,
+                    ease: "power3.out",
+                    opacity: 1,
+                    filter: "blur(0px)",
+                },
+                "-=1.0",
+            )
+            .from(
+                ".reveal-meta",
+                {
+                    opacity: 0,
+                    duration: 1,
+                },
+                "-=0.5",
+            );
+
+        tl.to(
+            profileImage.value,
+            {
+                y: "-10%",
+                ease: "none",
+            },
+            0,
+        );
+
         const split = new SplitText(".reveal-content", { type: "lines" });
         const masks: HTMLElement[] = [];
 
         split.lines.forEach((line) => {
-            const mask = document.createElement("div");
-            mask.className = "mask";
-            line.style.position = "relative";
-            line.appendChild(mask);
-            masks.push(mask);
+            const wrapper = document.createElement("div");
+            wrapper.style.overflow = "hidden";
+            line.parentNode?.insertBefore(wrapper, line);
+            wrapper.appendChild(line);
+
+            gsap.set(line, { y: 100 });
         });
 
-        tl.to(masks, {
-            scaleX: 0,
-            transformOrigin: "right center",
-            ease: "none",
-            opacity: 0.5,
-            duration: 1,
-            stagger: 0.5,
-        });
+        tl.to(
+            split.lines,
+            {
+                y: 0,
+                stagger: 0.1,
+                duration: 1,
+                ease: "power2.out",
+            },
+            0,
+        );
 
         tl.to(
             ".more-btn",
             {
-                autoAlpha: 1,
+                opacity: 1,
                 y: 0,
-                duration: 0.8,
-                ease: "power2.out",
+                duration: 0.5,
             },
-            "-=0.2",
-        ); 
+            0.5,
+        );
 
         tl.to(
-            ".title, .content",
+            [".title", ".image-mask"],
             {
-                y: -100,
-                filter: "blur(15px)",
+                filter: "blur(10px)",
                 opacity: 0,
-                duration: 2,
-                ease: "power2.inOut",
+                scale: 0.95,
+                duration: 0.5,
             },
-            "+=0.5",
+            ">-0.2",
         );
-    }, mainContainer.value!);
+    }, mainContainer.value);
 });
 
 onUnmounted(() => {
@@ -144,24 +230,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.reveal-content {
-    overflow: hidden;
-}
-
-.more-btn {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-}
-
-:deep(.mask) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
-    z-index: 10;
-    pointer-events: none;
+.title {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
 }
 </style>

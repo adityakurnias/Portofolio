@@ -45,6 +45,10 @@ onUnmounted(() => {
 </template>
 
 <style>
+:global(html) {
+  scroll-behavior: smooth;
+}
+
 html.lenis {
   height: auto;
 }
