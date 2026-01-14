@@ -1,11 +1,11 @@
 <template>
     <div
-        class="relative w-full text-neutral-200 overflow-x-hidden selection:bg-white selection:text-black"
+        class="relative w-full text-neutral-200 selection:bg-white selection:text-black"
     >
         <div
             class="fixed inset-0 z-50 pointer-events-none opacity-5 mix-blend-overlay"
             style="
-                background-image: url(&quot;https://grainy-gradients.vercel.app/noise.svg&quot;);
+                background-image: url('https://grainy-gradients.vercel.app/noise.svg');
             "
         ></div>
 
@@ -50,7 +50,7 @@
                         <p
                             class="reveal-content font-light text-base leading-relaxed text-neutral-300/90"
                         >
-                            I’m a web developer who likes to learn by building
+                            I’m a Front-End Developer who likes to learn by building
                             and figuring things out as I go. I enjoy working
                             with people, chatting through ideas, and slowly
                             shaping simple thoughts into real, working websites.
@@ -214,10 +214,10 @@ onMounted(() => {
         tl.to(
             [".title", ".image-mask"],
             {
-                filter: "blur(10px)",
+                filter: "grayscale(0.5)",
                 opacity: 0,
                 scale: 0.95,
-                duration: 0.5,
+                duration: 0.8,
             },
             ">-0.2",
         );
