@@ -12,7 +12,7 @@
             <SectionAbout />
         </section>
         
-        <section class="h-screen">
+        <section id="work">
             <SectionWork />
         </section>
         

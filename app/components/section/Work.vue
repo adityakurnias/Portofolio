@@ -1,12 +1,5 @@
 <template>
     <div ref="mainWrapper" class="bg-black text-neutral-200 overflow-x-hidden">
-        <div
-            class="fixed inset-0 z-50 pointer-events-none opacity-[0.05] mix-blend-overlay"
-            style="
-                background-image: url(&quot;https://grainy-gradients.vercel.app/noise.svg&quot;);
-            "
-        ></div>
-
         <section
             ref="headerSection"
             class="h-[50vh] flex items-end px-6 lg:px-16 pb-12"

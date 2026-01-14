@@ -2,7 +2,7 @@
   <div class="relative w-full">
     
     <nav 
-      class="fixed top-6 left-1/2 -translate-x-1/2 z-[60] flex items-center gap-3 p-2 pl-6 pr-2 rounded-full border border-white/10 bg-neutral-900/40 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
+      class="fixed top-6 left-1/2 -translate-x-1/2 z-60 flex items-center gap-3 p-2 pl-6 pr-2 rounded-full border border-white/10 bg-neutral-900/40 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
       :class="{ 'w-[90vw] md:w-[400px] justify-between': !isMenuOpen, 'w-[90vw] md:w-[95vw] justify-between': isMenuOpen }"
     >
       
