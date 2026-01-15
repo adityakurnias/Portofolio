@@ -3,13 +3,6 @@
         class="relative w-full text-neutral-200 selection:bg-white selection:text-black"
     >
         <div
-            class="fixed inset-0 z-50 pointer-events-none opacity-5 mix-blend-overlay"
-            style="
-                background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-            "
-        ></div>
-
-        <div
             ref="mainContainer"
             class="relative min-h-screen flex flex-col justify-center py-20"
         >
@@ -50,10 +43,11 @@
                         <p
                             class="reveal-content font-light text-base leading-relaxed text-neutral-300/90"
                         >
-                            I’m a Front-End Developer who likes to learn by building
-                            and figuring things out as I go. I enjoy working
-                            with people, chatting through ideas, and slowly
-                            shaping simple thoughts into real, working websites.
+                            I’m a Front-End Developer who likes to learn by
+                            building and figuring things out as I go. I enjoy
+                            working with people, chatting through ideas, and
+                            slowly shaping simple thoughts into real, working
+                            websites.
                         </p>
 
                         <div class="more-btn opacity-0 mt-8">

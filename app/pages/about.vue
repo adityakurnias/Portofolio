@@ -34,11 +34,11 @@
         >
             <div class="lg:col-span-5 relative">
                 <div
-                    class="image-wrapper relative w-full h-[60vh] overflow-hidden rounded-lg grayscale hover:grayscale-0 transition-all duration-700"
+                    class="image-wrapper opacity-0 relative w-full h-[60vh] overflow-hidden rounded-lg grayscale hover:grayscale-0 transition-all duration-700"
                 >
                     <img
                         ref="profileImage"
-                        src="/Images/Self.jpg"
+                        src="/Images/Self2.jpg"
                         class="absolute inset-0 w-full h-[120%] object-cover object-center will-change-transform"
                     />
                     <div
@@ -85,11 +85,11 @@
                 </div>
 
                 <div class="pt-8 reveal-bio opacity-0 translate-y-8">
-                    <img
+                    <!-- <img
                         src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Signature_sample.svg"
                         class="h-12 invert opacity-50 mb-4"
                         alt="Signature"
-                    />
+                    /> -->
                     <!-- <button
                         class="group flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-white hover:text-neutral-400 transition-colors"
                     >
@@ -200,13 +200,22 @@ onMounted(() => {
 
         gsap.from(".image-wrapper", {
             clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
-            duration: 1.5,
-            ease: "power3.inOut",
-            scrollTrigger: {
-                trigger: ".image-wrapper",
-                start: "top 85%",
-            },
+            opacity: 0,
+            y: 20,
         });
+        
+        gsap.to(".image-wrapper", {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power4.out",
+          scrollTrigger: {
+              trigger: ".image-wrapper",
+              start: "top 85%",
+              end: "bottom top",
+              scrub: 1,
+          },
+        })
 
         gsap.to(profileImage.value, {
             y: "-20%",
@@ -263,7 +272,6 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* Custom Utility untuk animasi teks */
 .reveal-text {
     will-change: transform;
 }
