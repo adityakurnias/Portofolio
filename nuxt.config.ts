@@ -10,6 +10,14 @@ export default defineNuxtConfig({
       tailwindcss()
     ] 
   },
+  
+  nitro: {
+    preset: 'bun',
+    prerender: {
+      crawlLinks: true,
+      routes: ['/']
+    }
+  },
 
   modules: ["@tresjs/nuxt"],
   tres: {
