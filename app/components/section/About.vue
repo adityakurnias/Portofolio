@@ -28,7 +28,7 @@
                                 {{ char }}
                             </span>
                         </span>
-                        <span class="block ml-[10%] lg:ml-[15%]">
+                        <span class="block ml-[8%] lg:ml-[12%]">
                             <span
                                 v-for="(char, i) in 'I Am'"
                                 :key="i"
@@ -39,7 +39,7 @@
                         </span>
                     </h2>
 
-                    <div class="mt-16 lg:max-w-md ml-auto lg:mr-10">
+                    <div class="mt-16 lg:max-w-md ml-[14%] lg:mr-10">
                         <p
                             class="reveal-content font-light text-base leading-relaxed text-neutral-300/90"
                         >
@@ -119,11 +119,17 @@ onMounted(() => {
 
         gsap.set(".image-mask", {
             clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
-            filter: "blur(10px)",
+            filter: "blur(20px)",
+            scale: 1.1,
         });
         gsap.set(".reveal-char", {
-            y: 80,
-            filter: "blur(10px)",
+            y: 120,
+            rotation: 15,
+            filter: "blur(15px)",
+            opacity: 0,
+        });
+        gsap.set(".more-btn", {
+            y: 30,
             opacity: 0,
         });
 
@@ -138,59 +144,66 @@ onMounted(() => {
         contentTl
             .to(".image-mask", {
                 clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-                duration: 1.5,
+                duration: 1.8,
                 ease: "power4.inOut",
+                scale: 1,
                 filter: "blur(0px)",
             })
             .to(
                 ".reveal-char",
                 {
                     y: 0,
-                    stagger: 0.05,
-                    duration: 1,
-                    ease: "power3.out",
+                    rotation: 0,
+                    stagger: 0.04,
+                    duration: 1.2,
+                    ease: "power4.out",
                     opacity: 1,
                     filter: "blur(0px)",
                 },
-                "-=1.0",
+                "-=1.4",
             )
             .from(
                 ".reveal-meta",
                 {
                     opacity: 0,
-                    duration: 1,
+                    y: 20,
+                    duration: 1.2,
+                    ease: "power3.out",
                 },
-                "-=0.5",
+                "-=1.0",
             );
 
         tl.to(
             profileImage.value,
             {
-                y: "-10%",
+                y: "-15%",
+                scale: 1.05,
                 ease: "none",
             },
             0,
         );
 
         const split = new SplitText(".reveal-content", { type: "lines" });
-        const masks: HTMLElement[] = [];
 
         split.lines.forEach((line) => {
             const wrapper = document.createElement("div");
             wrapper.style.overflow = "hidden";
+            wrapper.style.perspective = "1000px";
             line.parentNode?.insertBefore(wrapper, line);
             wrapper.appendChild(line);
 
-            gsap.set(line, { y: 100 });
+            gsap.set(line, { y: 150, opacity: 0, rotationX: -15 });
         });
 
         tl.to(
             split.lines,
             {
                 y: 0,
+                opacity: 1,
+                rotationX: 0,
                 stagger: 0.1,
-                duration: 1,
-                ease: "power2.out",
+                duration: 1.5,
+                ease: "power3.out",
             },
             0,
         );
@@ -200,20 +213,24 @@ onMounted(() => {
             {
                 opacity: 1,
                 y: 0,
-                duration: 0.5,
+                duration: 0.8,
+                ease: "power3.out",
             },
             0.5,
         );
 
         tl.to(
-            [".title", ".image-mask"],
+            [".title", ".image-mask", ".reveal-content", ".more-btn", ".reveal-meta"],
             {
-                filter: "grayscale(0.5)",
+                filter: "grayscale(1) blur(5px)",
                 opacity: 0,
-                scale: 0.95,
-                duration: 0.8,
+                scale: 0.9,
+                y: -50,
+                stagger: 0.05,
+                duration: 1.5,
+                ease: "power3.inOut",
             },
-            ">-0.2",
+            ">-0.5",
         );
     }, mainContainer.value);
 });

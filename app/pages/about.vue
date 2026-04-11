@@ -13,11 +13,11 @@
         <h1
           class="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9]"
         >
-          <div class="overflow-hidden">
-            <span class="block reveal-text translate-y-full">Crafting</span>
+          <div class="overflow-hidden pb-4">
+            <span class="block reveal-text">Crafting</span>
           </div>
-          <div class="overflow-hidden">
-            <span class="block reveal-text translate-y-full text-neutral-500"
+          <div class="overflow-hidden pb-4">
+            <span class="block reveal-text text-neutral-500"
               >Digital Reality.</span
             >
           </div>
@@ -166,48 +166,71 @@ const profileImage = ref<HTMLElement | null>(null);
 
 const services = [
   { name: "Frontend Development", desc: "Vue, Nuxt, React" },
-  { name: "Backend Integration", desc: "Laravel, Hono, Nuxt" },
-  { name: "UI/UX Design", desc: "Figma, Prototyping" },
+  { name: "Backend Development", desc: "Laravel, Hono, Nuxt" },
+  { name: "UI/UX Design", desc: "Figma, Penpot" },
 ];
 
 let ctx: gsap.Context;
 
 onMounted(() => {
-  ctx = gsap.context(() => {
+  return ctx = gsap.context(() => {
     const tl = gsap.timeline();
 
-    tl.to(".reveal-item", { opacity: 1, duration: 1 }).to(
+    gsap.set(".reveal-item", { opacity: 0, y: 20, filter: "blur(5px)" });
+    gsap.set(".reveal-text", { y: "120%", rotationZ: 10, filter: "blur(15px)" });
+    gsap.set(".image-wrapper", {
+      clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+      filter: "blur(20px)",
+      scale: 1.1,
+      opacity: 1
+    });
+    gsap.set(".reveal-bio", { opacity: 0, y: 50, filter: "blur(10px)" });
+
+    tl.to(".reveal-item", {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      duration: 1,
+      ease: "power3.out"
+    }).to(
       ".reveal-text",
       {
-        y: 0,
-        duration: 1.2,
-        stagger: 0.1,
+        y: "0%",
+        rotationZ: 0,
+        filter: "blur(0px)",
+        duration: 1.5,
+        stagger: 0.15,
         ease: "power4.out",
       },
-      "-=0.5",
+      "-=0.7"
     );
 
-    gsap.from(".image-wrapper", {
-      clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
-      opacity: 0,
-      y: 20,
+    const scrollTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: mainContainer.value,
+        start: "top -30px", 
+      }
     });
 
-    gsap.to(".image-wrapper", {
-      y: 0,
+    scrollTl.to(".image-wrapper", {
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+      filter: "blur(0px)",
+      scale: 1,
+      duration: 1.8,
+      ease: "power4.inOut",
+    }, 0)
+    .to(".reveal-bio", {
       opacity: 1,
-      duration: 0.8,
-      ease: "power4.out",
-      scrollTrigger: {
-        trigger: ".image-wrapper",
-        start: "top 85%",
-        end: "bottom top",
-        scrub: 1,
-      },
-    });
+      y: 0,
+      filter: "blur(0px)",
+      stagger: 0.15,
+      duration: 1.2,
+      ease: "power3.out",
+    }, 0.4);
 
     gsap.to(profileImage.value, {
       y: "-20%",
+      scale: 1.05,
       ease: "none",
       scrollTrigger: {
         trigger: ".image-wrapper",
@@ -217,42 +240,34 @@ onMounted(() => {
       },
     });
 
-    gsap.to(".reveal-bio", {
-      opacity: 1,
+    gsap.set(".reveal-stack", { y: 50, opacity: 0, filter: "blur(10px)" });
+    gsap.to(".reveal-stack", {
       y: 0,
-      stagger: 0.1,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".reveal-bio",
-        start: "top 85%",
-        end: "bottom top",
-        scrub: 1,
-      },
-    });
-
-    gsap.to(".service-item", {
       opacity: 1,
-      x: 0,
+      filter: "blur(0px)",
+      duration: 1.2,
+      ease: "power3.out",
       stagger: 0.1,
-      duration: 0.8,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".service-item",
-        start: "top 90%",
-      },
-    });
-
-    gsap.from(".reveal-stack", {
-      y: 50,
-      opacity: 0,
-      duration: 1,
       scrollTrigger: {
         trigger: ".reveal-stack",
         start: "top 85%",
       },
     });
-  }, mainContainer.value);
+
+    gsap.set(".service-item", { opacity: 0, x: -30, filter: "blur(10px)" });
+    gsap.to(".service-item", {
+      opacity: 1,
+      x: 0,
+      filter: "blur(0px)",
+      stagger: 0.1,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".service-item",
+        start: "top 90%",
+      },
+    });
+  }, mainContainer.value!);
 });
 
 onUnmounted(() => {

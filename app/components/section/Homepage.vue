@@ -30,7 +30,7 @@
                                 -webkit-text-stroke: 1px
                                     rgba(255, 255, 255, 0.5);
                             "
-                            >A Creative Developer</span
+                            >Designing with Code</span
                         >
                     </h1>
                     <div class="hero-btn opacity-0 mt-5 pointer-events-auto w-fit">
