@@ -2,15 +2,15 @@
   "projects": [
     {
       "id": "1",
-      "title": "Project 1",
-      "description": "Description of Project 1",
-      "image": "./Projects/evote.jpg",
+      "title": "SMK Plus Pelita Nusantara Website",
+      "description": "Website for SMK Plus Pelita Nusantara Bogor",
+      "image": "./Projects/Beranda-SMK-Plus-Pelita-Nusantara.png",
       "url": "https://example.com/project1"
     },
     {
       "id": "2",
-      "title": "Project 2",
-      "description": "Description of Project 2",
+      "title": "E-Voting SMK Plus Pelita Nusantara",
+      "description": "E-Voting for SMK Plus Pelita Nusantara Bogor",
       "image": "./Projects/evote.jpg",
       "url": "https://example.com/project2"
     },

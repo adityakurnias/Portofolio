@@ -61,7 +61,7 @@
             <h4 class="text-xs font-bold text-white mb-4 uppercase tracking-widest">Connect</h4>
             <ul class="space-y-2 text-sm">
               <li><a href="https://www.instagram.com/dikrcy" class="hover:text-white transition-colors">Instagram</a></li>
-              <li><a href="https://www.linkedin.com/in/aditya-kurnia-saputra-6b9421308" class="hover:text-white transition-colors">LinkedIn</a></li>
+              <li><a href="https://www.linkedin.com/in/aditya-kurnia-saputra" class="hover:text-white transition-colors">LinkedIn</a></li>
               <li><a href="https://github.com/adityakurnias" class="hover:text-white transition-colors">GitHub</a></li>
               
             </ul>
