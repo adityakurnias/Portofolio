@@ -13,12 +13,12 @@ onMounted(() => {
   })
 
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = this.getAttribute('href');
-        lenis.scrollTo(target);
-      });
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = this.getAttribute('href');
+      lenis.scrollTo(target);
     });
+  });
 
   lenis.on('scroll', ScrollTrigger.update)
 

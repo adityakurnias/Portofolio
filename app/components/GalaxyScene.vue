@@ -154,12 +154,8 @@ onBeforeUnmount(() => {
 
 <template>
     <TresPoints ref="bufferRef">
-        <TresBufferGeometry
-            :position="[positions, 3]"
-            :a-scale="[scales, 1]"
-            :color="[colors, 3]"
-            :a-randomness="[randomnessArray, 3]"
-        />
+        <TresBufferGeometry :position="[positions, 3]" :a-scale="[scales, 1]" :color="[colors, 3]"
+            :a-randomness="[randomnessArray, 3]" />
         <TresShaderMaterial v-bind="shader" />
     </TresPoints>
 </template>
