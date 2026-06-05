@@ -7,17 +7,17 @@
         <section id="home">
             <SectionHomepage />
         </section>
-        
+
         <section id="about">
             <SectionAbout />
         </section>
-        
+
         <section id="work">
             <SectionWork />
         </section>
-        
+
         <section class="h-screen ">
-            
+
         </section>
     </main>
 </template>
