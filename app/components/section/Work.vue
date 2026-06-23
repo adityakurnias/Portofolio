@@ -6,7 +6,8 @@
                     02 — SELECTED WORKS
                 </span>
 
-                <h2 class="text-5xl md:text-7xl font-bold tracking-tighter text-white leading-tight">
+                <h2
+                    class="font-syncopate text-4xl md:text-6xl font-bold tracking-tighter text-white leading-tight uppercase">
                     <div class="overflow-hidden">
                         <span class="block reveal-text translate-y-full">Recent</span>
                     </div>

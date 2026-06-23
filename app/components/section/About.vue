@@ -3,12 +3,13 @@
         <div ref="mainContainer" class="relative min-h-screen flex flex-col justify-center py-20">
             <div
                 class="container mx-auto px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-8 items-center relative">
-                <div class="lg:col-span-7 z-20 relative mix-blend-difference">
+                <div class="lg:col-span-7 z-20 relative">
                     <div class="text-xs font-mono mb-6 tracking-[0.2em] text-neutral-400 reveal-meta">
                         01 — INTRODUCTION
                     </div>
 
-                    <h2 class="title text-[11vw] lg:text-[9rem] font-bold leading-[0.85] tracking-tighter">
+                    <h2
+                        class="title font-syncopate text-[11vw] lg:text-[9rem] font-bold leading-[0.85] tracking-tighter mix-blend-difference">
                         <span class="block">
                             <span v-for="(char, i) in 'Who'" :key="i" class="reveal-char inline-block">
                                 {{ char }}
@@ -21,8 +22,8 @@
                         </span>
                     </h2>
 
-                    <div class="mt-16 lg:max-w-md ml-[14%] lg:mr-10">
-                        <p class="reveal-content font-light text-base leading-relaxed text-neutral-300/90">
+                    <div class="mt-16 lg:max-w-xl lg:mr-10">
+                        <p class="reveal-content font-normal text-base md:text-lg leading-relaxed text-neutral-200/80">
                             I’m a Front-End Developer who likes to learn by
                             building and figuring things out as I go. I enjoy
                             working with people, chatting through ideas, and
@@ -96,7 +97,7 @@ onMounted(() => {
             scrollTrigger: {
                 trigger: mainContainer.value,
                 start: "top top",
-                end: "+=150%",
+                end: "+=220%",
                 pin: true,
                 scrub: 1,
             },
@@ -164,6 +165,7 @@ onMounted(() => {
                 y: "-15%",
                 scale: 1.05,
                 ease: "none",
+                duration: 3.5,
             },
             0,
         );
@@ -187,7 +189,7 @@ onMounted(() => {
                 opacity: 1,
                 rotationX: 0,
                 stagger: 0.1,
-                duration: 1.5,
+                duration: 1.2,
                 ease: "power3.out",
             },
             0,
@@ -198,10 +200,10 @@ onMounted(() => {
             {
                 opacity: 1,
                 y: 0,
-                duration: 0.8,
+                duration: 0.6,
                 ease: "power3.out",
             },
-            0.5,
+            1.0,
         );
 
         tl.to(
@@ -212,10 +214,10 @@ onMounted(() => {
                 scale: 0.9,
                 y: -50,
                 stagger: 0.05,
-                duration: 1.5,
+                duration: 1.2,
                 ease: "power3.inOut",
             },
-            ">-0.5",
+            2.6,
         );
     }, mainContainer.value);
 });

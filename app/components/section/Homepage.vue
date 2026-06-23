@@ -16,7 +16,7 @@
             <div class="flex-1 flex flex-col justify-center px-10 md:px-24">
                 <div class="max-w-4xl">
                     <h1
-                        class="hero-text text-neutral-200 opacity-0 translate-y-20 text-[10vw] md:text-[8vw] font-black leading-[0.85] uppercase tracking-tighter">
+                        class="hero-text font-syncopate text-neutral-200 opacity-0 translate-y-20 text-[10vw] md:text-[8vw] font-black leading-[0.85] uppercase tracking-tighter">
                         KURNIAS <br />
                         <span class="text-transparent" style="
                                 -webkit-text-stroke: 1px
