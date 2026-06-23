@@ -2,31 +2,35 @@
   "projects": [
     {
       "id": "1",
+      "slug": "smk-plus-pelita-nusantara",
       "title": "SMK Plus Pelita Nusantara Website",
       "description": "Website for SMK Plus Pelita Nusantara Bogor",
       "image": "./Projects/Beranda-SMK-Plus-Pelita-Nusantara.png",
-      "url": "/project/smk-plus-pelita-nusantara"
+      "url": "https://smkpluspnb.sch.id"
     },
     {
       "id": "2",
+      "slug": "synconomics",
       "title": "Synconomics",
       "description": "An ERP platform with an AI Business Mentor that maps the economic ecosystem in the form of a map. From idea to profit, connect with your local business community. ",
       "image": "./Projects/Synconomics.png",
-      "url": "/project/synconomics"
+      "url": "https://synconomics.synchronizeteams.com"
     },
     {
       "id": "3",
+      "slug": "e-voting",
       "title": "E-Voting SMK Plus Pelita Nusantara",
       "description": "E-Voting for SMK Plus Pelita Nusantara Bogor",
       "image": "./Projects/evote.jpg",
-      "url": "/project/e-voting"
+      "url": "https://github.com/DevacctoRPL/E-Voting-Osis"
     },
     {
       "id": "4",
+      "slug": "trabsen",
       "title": "Trabsen",
       "description": "Trabsen is a modern online attendance tracking app designed to simplify the process of recording staff and teacher attendance. The app is built as a Progressive Web App (PWA) to provide a fast and responsive user experience, both online and offline.",
       "image": "./Projects/Trabsen.png",
-      "url": "/project/trabsen"
+      "url": "https://absensi.smkpluspnb.sch.id"
     }
   ]
 }

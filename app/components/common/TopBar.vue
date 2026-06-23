@@ -69,7 +69,7 @@
             <h4 class="text-xs font-bold text-white mb-4 uppercase tracking-widest">Get in touch</h4>
             <a href="mailto:adityakurniasaputra903@gmail.com"
               class="text-2xl hover:text-white hover:underline decoration-1 underline-offset-4 transition-all">Email
-              Me!</a>
+              Me</a>
           </div>
         </div>
 
