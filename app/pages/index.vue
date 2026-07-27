@@ -16,8 +16,10 @@
             <SectionWork />
         </section>
 
-        <section class="h-screen ">
-
+        <section id="contact">
+            <SectionContact />
         </section>
+
+        <SectionFooter />
     </main>
 </template>
