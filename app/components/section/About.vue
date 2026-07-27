@@ -82,17 +82,35 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import { onMounted, onUnmounted, ref } from "vue";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const mainContainer = ref<HTMLElement | null>(null);
 const profileImage = ref<HTMLElement | null>(null);
-let ctx: gsap.Context;
+let mm: gsap.MatchMedia;
+let split: SplitText;
 
 onMounted(() => {
     if (!mainContainer.value) return;
 
-    ctx = gsap.context(() => {
+    split = new SplitText(".reveal-content", { type: "lines" });
+    split.lines.forEach((line) => {
+        const wrapper = document.createElement("div");
+        wrapper.style.overflow = "hidden";
+        wrapper.style.perspective = "1000px";
+        line.parentNode?.insertBefore(wrapper, line);
+        wrapper.appendChild(line);
+    });
+
+    mm = gsap.matchMedia(mainContainer.value);
+
+    mm.add("(min-width: 1024px)", () => {
+        gsap.set(".image-mask", { clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)", filter: "blur(20px)", scale: 1.1 });
+        gsap.set(".reveal-char", { y: 120, rotation: 15, filter: "blur(15px)", opacity: 0 });
+        gsap.set(".more-btn", { y: 30, opacity: 0 });
+        gsap.set(split.lines, { y: 150, opacity: 0, rotationX: -15 });
+
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: mainContainer.value,
@@ -101,22 +119,6 @@ onMounted(() => {
                 pin: true,
                 scrub: 1,
             },
-        });
-
-        gsap.set(".image-mask", {
-            clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
-            filter: "blur(20px)",
-            scale: 1.1,
-        });
-        gsap.set(".reveal-char", {
-            y: 120,
-            rotation: 15,
-            filter: "blur(15px)",
-            opacity: 0,
-        });
-        gsap.set(".more-btn", {
-            y: 30,
-            opacity: 0,
         });
 
         const contentTl = gsap.timeline({
@@ -128,102 +130,64 @@ onMounted(() => {
         });
 
         contentTl
-            .to(".image-mask", {
-                clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-                duration: 1.8,
-                ease: "power4.inOut",
-                scale: 1,
-                filter: "blur(0px)",
-            })
-            .to(
-                ".reveal-char",
-                {
-                    y: 0,
-                    rotation: 0,
-                    stagger: 0.04,
-                    duration: 1.2,
-                    ease: "power4.out",
-                    opacity: 1,
-                    filter: "blur(0px)",
-                },
-                "-=1.4",
-            )
-            .from(
-                ".reveal-meta",
-                {
-                    opacity: 0,
-                    y: 20,
-                    duration: 1.2,
-                    ease: "power3.out",
-                },
-                "-=1.0",
-            );
+            .to(".image-mask", { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 1.8, ease: "power4.inOut", scale: 1, filter: "blur(0px)" })
+            .to(".reveal-char", { y: 0, rotation: 0, stagger: 0.04, duration: 1.2, ease: "power4.out", opacity: 1, filter: "blur(0px)" }, "-=1.4")
+            .from(".reveal-meta", { opacity: 0, y: 20, duration: 1.2, ease: "power3.out" }, "-=1.0");
 
-        tl.to(
-            profileImage.value,
-            {
-                y: "-15%",
-                scale: 1.05,
-                ease: "none",
-                duration: 3.5,
+        tl.to(profileImage.value, { y: "-15%", scale: 1.05, ease: "none", duration: 3.5 }, 0);
+        
+        tl.to(split.lines, { y: 0, opacity: 1, rotationX: 0, stagger: 0.1, duration: 1.2, ease: "power3.out" }, 0);
+        tl.to(".more-btn", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 1.0);
+        
+        tl.to([".title", ".image-mask", ".reveal-content", ".more-btn", ".reveal-meta"], {
+            filter: "grayscale(1) blur(5px)",
+            opacity: 0,
+            scale: 0.9,
+            y: -50,
+            stagger: 0.05,
+            duration: 1.2,
+            ease: "power3.inOut",
+        }, 2.6);
+    });
+
+    mm.add("(max-width: 1023px)", () => {
+        gsap.set(".image-mask", { clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)", filter: "blur(20px)", scale: 1.1 });
+        gsap.set(".reveal-char", { y: 120, rotation: 15, filter: "blur(15px)", opacity: 0 });
+        gsap.set(".more-btn", { y: 30, opacity: 0 });
+        gsap.set(split.lines, { y: 150, opacity: 0, rotationX: -15 });
+
+        const mobileTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: mainContainer.value,
+                start: "top 85%",
+                toggleActions: "play none none reverse",
             },
-            0,
-        );
-
-        const split = new SplitText(".reveal-content", { type: "lines" });
-
-        split.lines.forEach((line) => {
-            const wrapper = document.createElement("div");
-            wrapper.style.overflow = "hidden";
-            wrapper.style.perspective = "1000px";
-            line.parentNode?.insertBefore(wrapper, line);
-            wrapper.appendChild(line);
-
-            gsap.set(line, { y: 150, opacity: 0, rotationX: -15 });
         });
 
-        tl.to(
-            split.lines,
-            {
-                y: 0,
-                opacity: 1,
-                rotationX: 0,
-                stagger: 0.1,
-                duration: 1.2,
-                ease: "power3.out",
-            },
-            0,
-        );
+        mobileTl
+            .to(".image-mask", { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 1.5, ease: "power4.inOut", scale: 1, filter: "blur(0px)" })
+            .to(".reveal-char", { y: 0, rotation: 0, stagger: 0.04, duration: 1, ease: "power4.out", opacity: 1, filter: "blur(0px)" }, "-=1.2")
+            .from(".reveal-meta", { opacity: 0, y: 20, duration: 1, ease: "power3.out" }, "-=1.0")
+            .to(split.lines, { y: 0, opacity: 1, rotationX: 0, stagger: 0.1, duration: 1, ease: "power3.out" }, "-=0.5")
+            .to(".more-btn", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.5");
 
-        tl.to(
-            ".more-btn",
-            {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                ease: "power3.out",
+        gsap.to(profileImage.value, {
+            y: "-15%",
+            scale: 1.05,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".image-mask",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
             },
-            1.0,
-        );
-
-        tl.to(
-            [".title", ".image-mask", ".reveal-content", ".more-btn", ".reveal-meta"],
-            {
-                filter: "grayscale(1) blur(5px)",
-                opacity: 0,
-                scale: 0.9,
-                y: -50,
-                stagger: 0.05,
-                duration: 1.2,
-                ease: "power3.inOut",
-            },
-            2.6,
-        );
-    }, mainContainer.value);
+        });
+    });
 });
 
 onUnmounted(() => {
-    if (ctx) ctx.revert();
+    if (mm) mm.revert();
+    if (split) split.revert();
 });
 </script>
 
