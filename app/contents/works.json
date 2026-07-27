@@ -10,7 +10,7 @@
     {
       "id": "2",
       "title": "Synconomics",
-      "description": "An ERP platform with an AI Business Mentor that maps the economic ecosystem in the form of a map. From idea to profit, connect with your local business community. ",
+      "description": "An ERP platform with an AI Business Mentor that maps the economic ecosystem.",
       "image": "./Projects/Synconomics.png",
       "url": "/project/synconomics"
     },
@@ -24,7 +24,7 @@
     {
       "id": "4",
       "title": "Trabsen",
-      "description": "Trabsen is a modern online attendance tracking app designed to simplify the process of recording staff and teacher attendance. The app is built as a Progressive Web App (PWA) to provide a fast and responsive user experience, both online and offline.",
+      "description": "Trabsen is a online attendance tracking app simplify the process of recording staff and teacher attendance.",
       "image": "./Projects/Trabsen.png",
       "url": "/project/trabsen"
     }

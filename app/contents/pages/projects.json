@@ -5,32 +5,49 @@
       "slug": "smk-plus-pelita-nusantara",
       "title": "SMK Plus Pelita Nusantara Website",
       "description": "Website for SMK Plus Pelita Nusantara Bogor",
-      "image": "./Projects/Beranda-SMK-Plus-Pelita-Nusantara.png",
-      "url": "https://smkpluspnb.sch.id"
+      "image": "/Projects/Beranda-SMK-Plus-Pelita-Nusantara.png",
+      "url": "https://smkpluspnb.sch.id",
+      "source": "#",
+      "stack": [
+        "Nuxt",
+        "Vue",
+        "Tailwind CSS",
+        "Laravel"
+      ],
+      "content": "SMK Plus Pelita Nusantara is an Vocational High School located in Cibinong, Bogor Regency. Guided by the motto \"Success by Character,\" with a focus on developing skilled, entrepreneurial, and religious human resources, the school required a strong and easily accessible digital representation.<br><br>This project aimed to design and build a website platform that serves not only as a school profile but also as an integrated information center for new student admissions, a news portal, and documentation of student achievements."
     },
     {
       "id": "2",
       "slug": "synconomics",
       "title": "Synconomics",
-      "description": "An ERP platform with an AI Business Mentor that maps the economic ecosystem in the form of a map. From idea to profit, connect with your local business community. ",
-      "image": "./Projects/Synconomics.png",
-      "url": "https://synconomics.synchronizeteams.com"
+      "description": "An ERP platform with an AI Business Mentor that maps the economic ecosystem.",
+      "image": "/Projects/Synconomics.png",
+      "url": "https://synconomics.synchronizeteams.com",
+      "source": "https://github.com/SynchronizesTeams/Synconomics-Frontend",
+      "stack": [],
+      "content": ""
     },
     {
       "id": "3",
       "slug": "e-voting",
       "title": "E-Voting SMK Plus Pelita Nusantara",
       "description": "E-Voting for SMK Plus Pelita Nusantara Bogor",
-      "image": "./Projects/evote.jpg",
-      "url": "https://github.com/DevacctoRPL/E-Voting-Osis"
+      "image": "/Projects/evote.jpg",
+      "url": "https://smkpluspnb.sch.id",
+      "source": "https://github.com/DevacctoRPL/E-Voting-Osis",
+      "stack": [],
+      "content": ""
     },
     {
       "id": "4",
       "slug": "trabsen",
       "title": "Trabsen",
-      "description": "Trabsen is a modern online attendance tracking app designed to simplify the process of recording staff and teacher attendance. The app is built as a Progressive Web App (PWA) to provide a fast and responsive user experience, both online and offline.",
-      "image": "./Projects/Trabsen.png",
-      "url": "https://absensi.smkpluspnb.sch.id"
+      "description": "Trabsen is a online attendance tracking app simplify the process of recording staff and teacher attendance.",
+      "image": "/Projects/Trabsen.png",
+      "url": "https://absensi.smkpluspnb.sch.id",
+      "source": "#",
+      "stack": [],
+      "content": ""
     }
   ]
 }

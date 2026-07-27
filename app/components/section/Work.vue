@@ -48,7 +48,7 @@
                     </div>
                     <div
                         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center scale-0 group-hover:scale-100 transition-transform duration-500 ease-out">
-                        <a :href="project.url" target="_blank"
+                        <a :href="project.url"
                             class="text-xs font-bold text-white tracking-widest uppercase">View</a>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                 <div class="w-[30vw] h-[70vh] flex items-center justify-center shrink-0 border-l border-neutral-800">
                     <a href="https://github.com/adityakurnias"
                         class="text-xl font-mono tracking-widest hover:text-white transition-colors duration-300">
-                        VIEW ALL ARCHIVE &rarr;
+                        VIEW ALL PROJECTS &rarr;
                     </a>
                 </div>
             </div>
