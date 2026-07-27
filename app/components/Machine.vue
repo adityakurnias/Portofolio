@@ -5,14 +5,14 @@ import { useLoop, useTresContext } from "@tresjs/core";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const machinaGroup = shallowRef(null);
-const ringOuter = shallowRef(null);
-const ringMid = shallowRef(null);
-const ringInner = shallowRef(null);
-const coreRef = shallowRef(null);
-const coreShellRef = shallowRef(null);
-const greebleGroup = shallowRef(null);
-const debrisRef = shallowRef(null);
+const machinaGroup = shallowRef<THREE.Group | null>(null);
+const ringOuter = shallowRef<THREE.Mesh | null>(null);
+const ringMid = shallowRef<THREE.Mesh | null>(null);
+const ringInner = shallowRef<THREE.Mesh | null>(null);
+const coreRef = shallowRef<THREE.Mesh | null>(null);
+const coreShellRef = shallowRef<THREE.Mesh | null>(null);
+const greebleGroup = shallowRef<THREE.Group | null>(null);
+const debrisRef = shallowRef<THREE.Points | null>(null);
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,8 +61,7 @@ const handlePointerMove = (e: PointerEvent) => {
     pointer.y = (e.clientY / window.innerHeight - 0.5) * 2;
 };
 
-// Variabel untuk menyimpan GSAP Context
-let mm: gsap.Context;
+let mm: gsap.MatchMedia;
 
 onBeforeRender(({ delta, elapsed }) => {
     if (ringOuter.value) {
@@ -110,14 +109,14 @@ onMounted(() => {
         // Dekstop
         mm.add("(min-width: 768px)", () => {
             // Posisi awal
-            machinaGroup.value.position.set(4.5, 1, -2);
-            machinaGroup.value.scale.set(1.15, 1.15, 1.15);
+            machinaGroup.value!.position.set(4.5, 1, -2);
+            machinaGroup.value!.scale.set(1.15, 1.15, 1.15);
 
-            gsap.to(machinaGroup.value.scale, {
+            gsap.to(machinaGroup.value!.scale, {
                 x: 1.4, y: 1.4, z: 1.4,
                 scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 1 },
             });
-            gsap.to(machinaGroup.value.position, {
+            gsap.to(machinaGroup.value!.position, {
                 z: -6, x: 3,
                 scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 1 },
             });
@@ -125,14 +124,14 @@ onMounted(() => {
 
         // Mobile
         mm.add("(max-width: 767px)", () => {
-            machinaGroup.value.position.set(2, 3, -4);
-            machinaGroup.value.scale.set(0.9, 0.9, 0.9);
+            machinaGroup.value!.position.set(2, 3, -4);
+            machinaGroup.value!.scale.set(0.9, 0.9, 0.9);
 
-            gsap.to(machinaGroup.value.scale, {
+            gsap.to(machinaGroup.value!.scale, {
                 x: 1, y: 1, z: 1,
                 scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 1 },
             });
-            gsap.to(machinaGroup.value.position, {
+            gsap.to(machinaGroup.value!.position, {
                 z: -8, x: 0,
                 scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 1 },
             });
