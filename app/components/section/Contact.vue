@@ -8,10 +8,6 @@
                 </div>
 
                 <div class="reveal-meta opacity-0 flex items-center gap-2.5 text-xs font-mono text-neutral-400">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                    </span>
                     <span class="uppercase tracking-wider">AVAILABLE FOR FREELANCE & FULL-TIME ROLES</span>
                 </div>
             </div>
