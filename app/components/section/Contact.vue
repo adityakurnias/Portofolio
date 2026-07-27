@@ -23,7 +23,7 @@
                 </span>
             </h2>
 
-            <div class="reveal-content opacity-0 max-w-4xl space-y-6">
+            <div class="reveal-content opacity-0 max-w-5xl space-y-6">
                 <span class="block text-xs font-mono tracking-widest text-neutral-500 uppercase">INQUIRIES / SAY HELLO</span>
                 
                 <div class="flex flex-col gap-6">
