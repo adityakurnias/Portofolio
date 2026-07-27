@@ -24,19 +24,30 @@
       "image": "/Projects/Synconomics.png",
       "url": "https://synconomics.synchronizeteams.com",
       "source": "https://github.com/SynchronizesTeams/Synconomics-Frontend",
-      "stack": [],
-      "content": ""
+      "stack": [
+        "Nuxt",
+        "Vue",
+        "Tailwind CSS",
+        "Go",
+        "Gemini AI"
+      ],
+      "content": "Synconomics is a ERP platform integrating an AI Business Mentor to bridge the gap between local businesses. Focused on a distributed economy, the platform helps users ideate, validate, and operate their businesses while connecting them with the closest local ecosystem. <br><br>Key features include the 'AI Mentor' for discovering business niches and validating markets, 'Financial Intelligence' for real-time tracking of revenue streams and operational costs, and the 'Hyperlocal Economy' system. This system acts as a smart inventory matcher, connecting business needs with neighboring suppliers within a set radius, thereby creating a sustainable and collaborative local supply chain."
     },
     {
       "id": "3",
       "slug": "e-voting",
       "title": "E-Voting SMK Plus Pelita Nusantara",
       "description": "E-Voting for SMK Plus Pelita Nusantara Bogor",
-      "image": "/Projects/evote.jpg",
+      "image": "/Projects/Evoting.png",
       "url": "https://smkpluspnb.sch.id",
       "source": "https://github.com/DevacctoRPL/E-Voting-Osis",
-      "stack": [],
-      "content": ""
+      "stack": [
+        "Nuxt",
+        "Vue",
+        "Tailwind CSS",
+        "Laravel"
+      ],
+      "content": "The E-Voting system for SMK Plus Pelita Nusantara is a secure and efficient digital voting platform developed for the Student Council (OSIS) elections. This application modernizes the traditional voting process, ensuring transparency, accuracy, and accessibility for all participating students and staff.<br><br>Designed with a user-friendly interface, the platform allows voters to easily cast their ballots while providing administrators with real-time monitoring and automated vote counting, significantly reducing manual effort and human error during school elections."
     },
     {
       "id": "4",
@@ -46,8 +57,14 @@
       "image": "/Projects/Trabsen.png",
       "url": "https://absensi.smkpluspnb.sch.id",
       "source": "#",
-      "stack": [],
-      "content": ""
+      "stack": [
+        "Nuxt",
+        "Vue",
+        "TypeScript",
+        "Tailwind CSS",
+        "Laravel"
+      ],
+      "content": "Trabsen is a modern online attendance application built to streamline the process of recording staff and teacher attendance. Designed as a Progressive Web App (PWA), it delivers a fast and responsive user experience, fully capable of operating both online and offline.<br><br>Key features include secure user authentication, geolocation-based check-ins and check-outs with photo validation, and a comprehensive leave request system. It empowers institutions with real-time activity tracking and ensures reliable attendance management regardless of internet connectivity."
     }
   ]
 }
