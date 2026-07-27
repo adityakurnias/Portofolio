@@ -65,7 +65,6 @@
                 </div>
             </div>
 
-            <!-- Footer Action -->
             <div class="reveal-footer opacity-0 mt-24 pt-12 border-t border-neutral-900 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 font-mono text-xs uppercase tracking-widest">
                 <span class="text-neutral-500">MORE REPOSITORIES & EXPERIMENTS</span>
                 <a href="https://github.com/adityakurnias" 
@@ -84,7 +83,6 @@
 <script setup lang="ts">
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { onMounted, onUnmounted, ref } from "vue";
 import worksData from "~/contents/works.json";
 
 gsap.registerPlugin(ScrollTrigger);

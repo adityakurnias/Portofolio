@@ -2,7 +2,6 @@
 import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { onMounted, onUnmounted } from 'vue'
 
 import 'lenis/dist/lenis.css'
 
