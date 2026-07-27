@@ -1,6 +1,5 @@
 <template>
-    <div class="relative min-h-screen overflow-hidden bg-black font-sans text-neutral-200">
-        <!-- 3D Background -->
+<div class="relative min-h-screen overflow-clip bg-black font-sans text-neutral-200">        <!-- 3D Background -->
         <div class="absolute inset-0 z-0 pointer-events-none">
             <ClientOnly>
                 <TresCanvas alpha>
@@ -12,7 +11,7 @@
             </ClientOnly>
         </div>
 
-        <div class="relative z-10 pointer-events-none min-h-screen flex flex-col justify-between">
+        <div class="relative z-10 min-h-screen flex flex-col justify-between">
 
             <div
                 class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-black/70 via-transparent to-transparent md:bg-none z-[-1]">

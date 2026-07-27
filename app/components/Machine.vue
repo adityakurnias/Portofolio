@@ -62,6 +62,9 @@ const handlePointerMove = (e: PointerEvent) => {
 };
 
 let mm: gsap.MatchMedia;
+let pointerParallaxEnabled = false;
+let pointerModeQuery: MediaQueryList | null = null;
+let handlePointerModeChange: ((event: MediaQueryListEvent) => void) | null = null;
 
 onBeforeRender(({ delta, elapsed }) => {
     if (ringOuter.value) {
@@ -92,16 +95,36 @@ onBeforeRender(({ delta, elapsed }) => {
     }
     if (machinaGroup.value) {
         machinaGroup.value.position.y = Math.sin(elapsed * 0.4) * 0.15;
-        // Parallax dinonaktifkan di mobile via CSS event, tapi perhitungan math-nya tetap aman
-        machinaGroup.value.rotation.y +=
-            (pointer.x * 0.05 - machinaGroup.value.rotation.y * 0.02) * delta;
-        machinaGroup.value.rotation.x +=
-            (pointer.y * 0.03 - machinaGroup.value.rotation.x * 0.02) * delta;
+        if (pointerParallaxEnabled) {
+            machinaGroup.value.rotation.y +=
+                (pointer.x * 0.05 - machinaGroup.value.rotation.y * 0.02) * delta;
+            machinaGroup.value.rotation.x +=
+                (pointer.y * 0.03 - machinaGroup.value.rotation.x * 0.02) * delta;
+        }
     }
 });
 
 onMounted(() => {
-    window.addEventListener("pointermove", handlePointerMove);
+    pointerModeQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+    pointerParallaxEnabled = pointerModeQuery.matches;
+
+    handlePointerModeChange = (event) => {
+        pointerParallaxEnabled = event.matches;
+
+        if (pointerParallaxEnabled) {
+            window.addEventListener("pointermove", handlePointerMove);
+        } else {
+            window.removeEventListener("pointermove", handlePointerMove);
+            pointer.x = 0;
+            pointer.y = 0;
+        }
+    };
+
+    pointerModeQuery.addEventListener("change", handlePointerModeChange);
+
+    if (pointerParallaxEnabled) {
+        window.addEventListener("pointermove", handlePointerMove);
+    }
 
     if (machinaGroup.value) {
         mm = gsap.matchMedia();
@@ -141,6 +164,11 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
     window.removeEventListener("pointermove", handlePointerMove);
+
+    if (pointerModeQuery && handlePointerModeChange) {
+        pointerModeQuery.removeEventListener("change", handlePointerModeChange);
+    }
+
     scene.value.fog = null;
 
     if (mm) mm.revert();
