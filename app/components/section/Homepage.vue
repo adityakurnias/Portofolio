@@ -69,9 +69,8 @@ import gsap from "gsap";
 onMounted(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    // Animasi sekuensial yang rapi
     tl.to(".hero-text", { opacity: 1, y: 0, duration: 1.5, delay: 0.2 })
-        .to(".hero-line", { height: "80%", duration: 1 }, "-=1") // Garis pinggir memanjang ke bawah
+        .to(".hero-line", { height: "80%", duration: 1 }, "-=1") 
         .to(".hero-desc", { opacity: 1, y: 0, duration: 1 }, "-=1")
         .to(".hero-btn", { opacity: 1, duration: 1 }, "-=0.5")
         .to(".hero-hud", { opacity: 1, duration: 1 }, "-=0.5")

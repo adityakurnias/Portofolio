@@ -18,57 +18,83 @@
             </div>
         </section>
 
-        <section ref="scrollSection" class="relative h-screen overflow-hidden">
-            <div ref="wrapper" class="flex gap-10 px-6 lg:px-16 h-full items-center w-fit will-change-transform">
+        <!-- Container diubah menjadi h-auto di mobile agar bisa di-scroll vertikal natural -->
+        <section ref="scrollSection" class="relative h-auto lg:h-screen overflow-hidden">
+            <!-- flex-col untuk mobile, flex-row untuk desktop -->
+            <div ref="wrapper"
+                class="flex flex-col lg:flex-row gap-10 px-6 lg:px-16 h-full items-center w-full lg:w-fit will-change-transform pb-20 lg:pb-0">
+
                 <div v-for="(project, index) in projects" :key="project.id"
-                    class="project-card relative w-[80vw] md:w-[60vw] lg:w-[45vw] h-[60vh] md:h-[70vh] shrink-0 group">
-                    <div class="absolute -top-12 left-0 text-4xl font-light text-neutral-700 overflow-hidden">
-                        <span
-                            class="block translate-y-10 group-hover:translate-y-0 transition-transform duration-500 ease-out">{{
-                                String(index + 1).padStart(2, "0") }}</span>
-                    </div>
+                    class="project-card relative w-full lg:w-[45vw] h-[50vh] md:h-[60vh] lg:h-[70vh] shrink-0 group rounded-lg overflow-hidden">
+
                     <div
-                        class="relative w-full h-full overflow-hidden rounded-lg grayscale group-hover:grayscale-0 transition-all duration-700 ease-out">
+                        class="absolute -top-4 lg:-top-12 left-0 text-4xl font-light text-neutral-700 overflow-hidden z-30 pointer-events-none hidden lg:block">
+                        <span
+                            class="block translate-y-10 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                            {{ String(index + 1).padStart(2, "0") }}
+                        </span>
+                    </div>
+
+                    <!-- Hover grayscale dimatikan secara default di mobile, aktif di lg -->
+                    <div
+                        class="relative w-full h-full overflow-hidden rounded-lg lg:grayscale lg:group-hover:grayscale-0 transition-all duration-700 ease-out">
                         <img :src="project.image"
                             class="project-image absolute inset-0 w-[120%] h-full object-cover object-center transition-transform duration-700"
                             style="left: -10%" />
+                        <!-- Overlay lebih gelap di mobile agar teks selalu terbaca -->
                         <div
-                            class="absolute inset-0 bg-linear-to-t from-black to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                            class="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent opacity-80 lg:opacity-60 lg:group-hover:opacity-100 transition-opacity duration-500">
                         </div>
                     </div>
-                    <div class="absolute bottom-8 left-8 z-20 mix-blend-difference pointer-events-none">
-                        <h3
-                            class="text-3xl md:text-5xl font-bold text-white mb-2 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
+
+                    <div class="absolute bottom-6 lg:bottom-8 left-6 lg:left-8 right-6 z-20 pointer-events-none">
+                        <!-- Teks selalu tampil di mobile, tersembunyi & butuh hover di desktop -->
+                        <h3 class="text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-2 
+                                   translate-y-0 opacity-100 
+                                   lg:translate-y-4 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 
+                                   transition-all duration-500 delay-100">
                             {{ project.title }}
                         </h3>
-                        <p
-                            class="text-sm md:text-base text-neutral-300 max-w-sm translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-200">
+                        <p class="text-xs md:text-sm lg:text-base text-neutral-300 max-w-sm 
+                                  translate-y-0 opacity-100 
+                                  lg:translate-y-4 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 
+                                  transition-all duration-500 delay-200 line-clamp-3 lg:line-clamp-none">
                             {{ project.description }}
                         </p>
                     </div>
+
+                    <!-- Tombol view selalu muncul di tengah pada mobile (ukurannya disesuaikan) -->
                     <div
-                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center scale-0 group-hover:scale-100 transition-transform duration-500 ease-out">
+                        class="absolute top-8 right-8 lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 
+                                w-12 h-12 lg:w-24 lg:h-24 bg-white/20 lg:bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center 
+                                scale-100 lg:scale-0 lg:group-hover:scale-100 transition-transform duration-500 ease-out z-30">
                         <a :href="project.url"
-                            class="text-xs font-bold text-white tracking-widest uppercase">View</a>
+                            class="text-[10px] lg:text-xs font-bold text-white tracking-widest uppercase w-full h-full flex items-center justify-center rounded-full">
+                            <span class="lg:hidden">↗</span>
+                            <span class="hidden lg:block">View</span>
+                        </a>
                     </div>
                 </div>
 
-                <div class="w-[30vw] h-[70vh] flex items-center justify-center shrink-0 border-l border-neutral-800">
-                    <a href="https://github.com/adityakurnias"
-                        class="text-xl font-mono tracking-widest hover:text-white transition-colors duration-300">
+                <!-- Penyesuaian layout pembatas untuk View All -->
+                <div
+                    class="w-full lg:w-[30vw] h-[20vh] lg:h-[70vh] flex items-center justify-center shrink-0 border-t lg:border-t-0 lg:border-l border-neutral-800 mt-10 lg:mt-0">
+                    <a href="https://github.com/adityakurnias" target="_blank"
+                        class="text-sm md:text-xl font-mono tracking-widest hover:text-white transition-colors duration-300">
                         VIEW ALL PROJECTS &rarr;
                     </a>
                 </div>
             </div>
         </section>
 
-        <div class="h-[20vh] w-full bg-black"></div>
+        <div class="h-[10vh] lg:h-[20vh] w-full bg-black"></div>
     </div>
 </template>
 
 <script setup lang="ts">
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { onMounted, onUnmounted, ref } from "vue";
 import worksData from "~/contents/works.json";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -79,38 +105,28 @@ const headerSection = ref<HTMLElement | null>(null);
 const scrollSection = ref<HTMLElement | null>(null);
 const wrapper = ref<HTMLElement | null>(null);
 
-let ctx: gsap.Context;
+let mm: gsap.MatchMedia;
 
 onMounted(() => {
     if (!mainWrapper.value || !scrollSection.value || !wrapper.value) return;
 
-    ctx = gsap.context(() => {
-        const headerTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: headerSection.value,
-                start: "top 80%",
-                toggleActions: "play none none reverse",
-            },
-        });
+    mm = gsap.matchMedia(mainWrapper.value);
 
-        headerTl
-            .to(".reveal-meta", {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                ease: "power3.out",
-            })
-            .to(
-                ".reveal-text",
-                {
-                    y: 0,
-                    duration: 1.2,
-                    stagger: 0.1,
-                    ease: "power4.out",
-                },
-                "-=0.8",
-            );
+    // Header Animasi (Berlaku untuk semua ukuran layar)
+    const headerTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: headerSection.value,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+        },
+    });
 
+    headerTl
+        .to(".reveal-meta", { opacity: 1, y: 0, duration: 1, ease: "power3.out" })
+        .to(".reveal-text", { y: 0, duration: 1.2, stagger: 0.1, ease: "power4.out" }, "-=0.8");
+
+    // 💻 DESKTOP: Horizontal Scroll
+    mm.add("(min-width: 1024px)", () => {
         const getScrollAmount = () => {
             let wrapperWidth = wrapper.value!.scrollWidth;
             return -(wrapperWidth - window.innerWidth);
@@ -143,10 +159,29 @@ onMounted(() => {
                 },
             });
         });
-    }, mainWrapper.value);
+    });
+
+    // 📱 MOBILE: Vertical Scroll dengan fade-in sederhana
+    mm.add("(max-width: 1023px)", () => {
+        const cards = gsap.utils.toArray<HTMLElement>(".project-card");
+
+        cards.forEach((card) => {
+            gsap.from(card, {
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse",
+                }
+            });
+        });
+    });
 });
 
 onUnmounted(() => {
-    if (ctx) ctx.revert();
+    if (mm) mm.revert();
 });
 </script>
