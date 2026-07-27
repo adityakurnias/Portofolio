@@ -2,10 +2,10 @@
   <div class="relative w-full">
 
     <nav
-      class="fixed top-6 left-1/2 -translate-x-1/2 z-60 flex items-center gap-3 p-2 pl-6 pr-2 rounded-full border border-white/10 bg-neutral-900/40 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
-      :class="{ 'w-[90vw] md:w-100 justify-between': !isMenuOpen, 'w-[90vw] md:w-[95vw] justify-between': isMenuOpen }">
+      class="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-60 flex w-[calc(100vw-1rem)] sm:w-[min(90vw,42rem)] items-center gap-2 sm:gap-3 rounded-full border border-white/10 bg-neutral-900/40 px-4 py-2 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] sm:px-6"
+      :class="{ 'justify-between': !isMenuOpen, 'sm:w-[min(95vw,64rem)] justify-between': isMenuOpen }">
 
-      <div class="text-lg font-black tracking-tighter text-white uppercase italic overflow-hidden">
+      <div class="text-base sm:text-lg font-black tracking-tighter text-white uppercase italic overflow-hidden">
         <a href="/" class="hover-rotate-text block relative">
           <span>KURNIAS.</span>
         </a>
@@ -20,7 +20,7 @@
       </div>
 
       <button @click="toggleMenu"
-        class="relative overflow-hidden bg-white text-black px-5 py-2.5 rounded-full font-bold text-xs tracking-wide hover:scale-105 transition-transform active:scale-95 group z-50">
+        class="relative z-50 overflow-hidden rounded-full bg-white px-4 py-2 text-xs font-bold tracking-wide text-black transition-transform hover:scale-105 active:scale-95 sm:px-5 sm:py-2.5 group">
         <span
           class="absolute inset-0 flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
           :class="isMenuOpen ? '-translate-y-full' : 'translate-y-0'">
@@ -36,25 +36,26 @@
     </nav>
 
     <div ref="menuOverlay"
-      class="fixed inset-0 z-50 bg-[#0a0a0a] h-screen w-full flex flex-col justify-center items-center clip-hidden invisible">
+      class="fixed inset-0 z-50 flex h-screen w-full flex-col items-center justify-center bg-[#0a0a0a] clip-hidden invisible overflow-y-auto">
       <div
         class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]">
       </div>
 
-      <div class="container mx-auto px-6 md:px-20 grid grid-cols-1 md:grid-cols-2 h-full py-32">
+      <div
+        class="container mx-auto grid h-full grid-cols-1 gap-12 px-6 py-24 sm:px-8 md:px-12 lg:grid-cols-2 lg:px-20 lg:py-32">
 
-        <div class="flex flex-col justify-center space-y-2">
+        <div class="flex flex-col justify-center space-y-2 pt-16 lg:pt-0">
           <div v-for="(item, index) in menuItems" :key="index" class="overflow-hidden group">
             <a :href="item.link" @click="toggleMenu"
-              class="block text-[12vw] md:text-[5rem] lg:text-[6rem] font-bold leading-[0.9] text-neutral-400 hover:text-white hover:italic transition-all duration-300 menu-link-item origin-left will-change-transform">
+              class="menu-link-item block origin-left text-[clamp(3rem,14vw,6rem)] font-bold leading-none text-neutral-400 transition-all duration-300 hover:italic hover:text-white will-change-transform">
               {{ item.name }}
             </a>
           </div>
         </div>
 
         <div
-          class="hidden md:flex flex-col justify-end items-start md:items-end pb-10 text-neutral-400 space-y-8 menu-info-stagger">
-          <div class="text-right">
+          class="menu-info-stagger flex flex-col justify-end space-y-8 pb-10 text-neutral-400 items-start lg:items-end">
+          <div class="text-left lg:text-right">
             <h4 class="text-xs font-bold text-white mb-4 uppercase tracking-widest">Connect</h4>
             <ul class="space-y-2 text-sm">
               <li><a href="https://www.instagram.com/dikrcy" class="hover:text-white transition-colors">Instagram</a>
@@ -65,10 +66,10 @@
 
             </ul>
           </div>
-          <div class="text-right">
+          <div class="text-left lg:text-right">
             <h4 class="text-xs font-bold text-white mb-4 uppercase tracking-widest">Get in touch</h4>
             <a href="mailto:adityakurniasaputra903@gmail.com"
-              class="text-2xl hover:text-white hover:underline decoration-1 underline-offset-4 transition-all">Email
+              class="text-xl sm:text-2xl hover:text-white hover:underline decoration-1 underline-offset-4 transition-all">Email
               Me</a>
           </div>
         </div>
@@ -76,9 +77,9 @@
       </div>
 
       <div
-        class="md:hidden absolute bottom-10 left-0 w-full px-8 flex justify-between text-xs text-neutral-500 menu-info-stagger">
-        <span>Jakarta, ID</span>
-        <span>&copy; 2024</span>
+        class="menu-info-stagger md:hidden absolute bottom-6 left-0 flex w-full justify-between gap-4 px-6 text-xs text-neutral-500 sm:px-8">
+        <span>Aditya Kurnia Saputra</span>
+        <span>&copy; 2026</span>
       </div>
     </div>
 

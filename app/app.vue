@@ -2,38 +2,53 @@
 import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { onMounted, onUnmounted } from 'vue'
 
 import 'lenis/dist/lenis.css'
 
 onMounted(() => {
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true
-  })
+  const isDesktop = window.innerWidth > 768;
+
+  if (isDesktop) {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      smoothTouch: false,
+    })
+
+    lenis.on('scroll', ScrollTrigger.update)
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000)
+    })
+
+    gsap.ticker.lagSmoothing(0)
+
+    window.lenis = lenis
+  }
 
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
-      const target = this.getAttribute('href');
-      lenis.scrollTo(target);
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+
+      if (targetElement) {
+        if (window.lenis) {
+          window.lenis.scrollTo(targetId);
+        } else {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     });
   });
-
-  lenis.on('scroll', ScrollTrigger.update)
-
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000)
-  })
-
-  gsap.ticker.lagSmoothing(0)
-
-  window.lenis = lenis
 })
 
 onUnmounted(() => {
   if (window.lenis) {
     window.lenis.destroy()
+    window.lenis = null
   }
 })
 </script>
@@ -71,5 +86,15 @@ html {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
+}
+
+body {
+    background-color: #020205;
+    margin: 0;
+}
+
+::selection {
+    background: whitesmoke;
+    color: black;
 }
 </style>
