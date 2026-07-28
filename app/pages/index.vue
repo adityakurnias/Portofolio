@@ -1,14 +1,14 @@
 <script setup lang="ts">
 useSeoMeta({
   title: 'Aditya Kurnia Saputra — Front-End Developer & UI/UX Designer',
-  description: 'Portfolio of Aditya Kurnia Saputra, a Front-End Developer & UI/UX Designer based in Indonesia specializing in Vue, Nuxt, TypeScript, and modern web experiences.',
-  ogTitle: 'Aditya Kurnia Saputra — Front-End Developer',
-  ogDescription: 'Explore the portfolio of Aditya Kurnia Saputra featuring modern web design, Vue/Nuxt apps, and interactive digital experiences.',
+  description: 'Portfolio of Aditya Kurnia Saputra, a Front-End Developer & UI/UX Designer based in Indonesia specializing in Vue, Nuxt, TypeScript.',
+  ogTitle: 'Aditya Kurnia Saputra — Front-End Developer & UI/UX Designer',
+  ogDescription: 'Portfolio of Aditya Kurnia Saputra, a Front-End Developer & UI/UX Designer based in Indonesia specializing in Vue, Nuxt, TypeScript.',
   ogImage: 'https://kurnia.me/Images/og.webp',
   ogUrl: 'https://kurnia.me',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'Aditya Kurnia Saputra — Front-End Developer',
-  twitterDescription: 'Explore the portfolio of Aditya Kurnia Saputra featuring modern web design, Vue/Nuxt apps, and interactive digital experiences.',
+  twitterTitle: 'Aditya Kurnia Saputra — Front-End Developer & UI/UX Designer',
+  twitterDescription: 'Portfolio of Aditya Kurnia Saputra, a Front-End Developer & UI/UX Designer based in Indonesia specializing in Vue, Nuxt, TypeScript.',
   twitterImage: 'https://kurnia.me/Images/og.webp',
 })
 
