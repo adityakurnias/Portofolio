@@ -26,7 +26,7 @@ const speeds = {
     greeble: 0.03,
 };
 
-const GREEBLE_COUNT = 40;
+const GREEBLE_COUNT = 24;
 const greebleData = Array.from({ length: GREEBLE_COUNT }, (_, i) => {
     const angle = (i / GREEBLE_COUNT) * Math.PI * 2;
     const radiusJitter = 4 + (Math.random() - 0.5) * 0.15;
@@ -41,7 +41,7 @@ const greebleData = Array.from({ length: GREEBLE_COUNT }, (_, i) => {
     };
 });
 
-const DEBRIS_COUNT = 600;
+const DEBRIS_COUNT = 300;
 const debrisPositions = new Float32Array(DEBRIS_COUNT * 3);
 for (let i = 0; i < DEBRIS_COUNT; i++) {
     const i3 = i * 3;
@@ -53,7 +53,8 @@ for (let i = 0; i < DEBRIS_COUNT; i++) {
     debrisPositions[i3 + 2] = r * Math.cos(phi) - 3;
 }
 
-const { onBeforeRender } = useLoop();
+const { onBeforeRender, pause, resume } = useLoop();
+let observer: IntersectionObserver | null = null;
 
 let winWidth = 1920;
 let winHeight = 1080;
@@ -115,6 +116,22 @@ onBeforeRender(({ delta, elapsed }) => {
 onMounted(() => {
     updateWindowDimensions();
     window.addEventListener("resize", updateWindowDimensions);
+
+    const homeSection = document.getElementById("home");
+    if (homeSection && typeof IntersectionObserver !== "undefined") {
+        observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    resume();
+                } else {
+                    pause();
+                }
+            },
+            { threshold: 0.01 }
+        );
+        observer.observe(homeSection);
+    }
+
     pointerModeQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
     pointerParallaxEnabled = pointerModeQuery.matches;
 
@@ -173,6 +190,11 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
+    if (observer) {
+        observer.disconnect();
+        observer = null;
+    }
+
     window.removeEventListener("resize", updateWindowDimensions);
     window.removeEventListener("pointermove", handlePointerMove);
 

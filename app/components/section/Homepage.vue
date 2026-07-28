@@ -2,7 +2,7 @@
 <div class="relative min-h-screen overflow-clip bg-black font-sans text-neutral-200">        <!-- 3D Background -->
         <div class="absolute inset-0 z-0 pointer-events-none">
             <ClientOnly>
-                <TresCanvas alpha>
+                <TresCanvas alpha :pixel-ratio="[1, 1.5]">
                     <TresPerspectiveCamera :position="[0, 0, 6]" :look-at="[0, 0, 0]" />
                     <Suspense>
                         <Machine />

@@ -5,10 +5,6 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
 
-  experimental: {
-    inlineSSRStyles: true,
-  },
-
   features: {
     inlineStyles: true,
   },
@@ -96,12 +92,33 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: "canonical", href: "https://kurnia.me" },
-        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        { rel: "preconnect", href: "https Minimize main-thread work 40.9 s
+Consider reducing the time spent parsing, compiling and executing JS. You may find delivering smaller JS payloads helps with this. Learn how to minimize main-thread workTBTUnscored
+Category
+	
+Time Spent
+Other
+	
+39,854 ms
+Script Evaluation
+	
+840 ms
+Style & Layout
+	
+99 ms
+Script Parsing & Compilation
+	
+69 ms
+Garbage Collection
+	
+37 ms
+Rendering
+	
+28 ms
+Parse HTML & CSS
+	
+5 ms://fonts.googleapis.com" },
         { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" },
-        {
-          rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Syncopate:wght@400;700&display=swap",
-        },
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
         { rel: "icon", type: "image/png", href: "/favicon-32x32.png", sizes: "32x32" },
         { rel: "icon", type: "image/png", href: "/favicon-48x48.png", sizes: "48x48" },

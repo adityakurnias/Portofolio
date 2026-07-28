@@ -93,14 +93,17 @@ let split: SplitText;
 onMounted(() => {
     if (!mainContainer.value) return;
 
-    split = new SplitText(".reveal-content", { type: "lines" });
-    split.lines.forEach((line) => {
-        const wrapper = document.createElement("div");
-        wrapper.style.overflow = "hidden";
-        wrapper.style.perspective = "1000px";
-        line.parentNode?.insertBefore(wrapper, line);
-        wrapper.appendChild(line);
-    });
+    const targets = mainContainer.value.querySelectorAll(".reveal-content");
+    if (targets.length > 0) {
+        split = new SplitText(targets, { type: "lines", aria: "none" });
+        split.lines.forEach((line) => {
+            const wrapper = document.createElement("div");
+            wrapper.style.overflow = "hidden";
+            wrapper.style.perspective = "1000px";
+            line.parentNode?.insertBefore(wrapper, line);
+            wrapper.appendChild(line);
+        });
+    }
 
     mm = gsap.matchMedia(mainContainer.value);
 

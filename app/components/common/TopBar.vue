@@ -83,7 +83,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
@@ -101,8 +101,8 @@ const menuItems = [
   { name: 'CONTACT', link: '#contact' },
 ];
 
-let ctx;
-let splits = [];
+let ctx: gsap.Context;
+let splits: SplitText[] = [];
 
 const initHoverEffect = () => {
   const elements = document.querySelectorAll(".hover-rotate-text");
@@ -118,6 +118,7 @@ const initHoverEffect = () => {
 
     const clone = original.cloneNode(true) as HTMLElement;
     clone.classList.add("clone-text");
+    clone.setAttribute("aria-hidden", "true");
 
     gsap.set(clone, { position: "absolute", top: 0, left: 0, width: "100%", pointerEvents: "none" });
     element.appendChild(clone);
@@ -127,8 +128,8 @@ const initHoverEffect = () => {
   // Phase 2: Batch SplitText & GSAP timeline setup in next frame to prevent interleaved DOM reads/writes
   requestAnimationFrame(() => {
     queue.forEach(({ original, clone, element }) => {
-      const oSplit = new SplitText(original, { type: "chars" });
-      const cSplit = new SplitText(clone, { type: "chars" });
+      const oSplit = new SplitText(original, { type: "chars", aria: "none" });
+      const cSplit = new SplitText(clone, { type: "chars", aria: "none" });
       splits.push(oSplit, cSplit);
 
       gsap.set(cSplit.chars, { rotationX: -90, opacity: 0, transformOrigin: "50% 50% -20" });
