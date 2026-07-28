@@ -34,7 +34,7 @@
       <div class="lg:col-span-5 relative">
         <div
           class="image-wrapper opacity-0 relative w-full h-[60vh] overflow-hidden rounded-lg grayscale hover:grayscale-0 transition-all duration-700">
-          <img ref="profileImage" src="/Images/Self2.jpg"
+          <img ref="profileImage" src="/Images/Self2.jpg" alt="Aditya Kurnia Saputra Profile Picture"
             class="absolute inset-0 w-full h-[120%] object-cover object-center will-change-transform" />
           <div
             class="absolute bottom-4 left-4 bg-black/50 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
@@ -70,7 +70,7 @@
         </div>
 
         <div class="pt-8 reveal-bio opacity-0 translate-y-8">
-          <img src="../assets/images/sign.png" class="h-20 opacity-50 mb-4" alt="Signature" />
+          <img src="../assets/images/sign.png" class="h-20 opacity-50 mb-4" alt="Aditya Kurnia Saputra Signature" />
           <button
             class="group cursor-pointer flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-white hover:text-neutral-400 transition-colors">
             Download Resume
@@ -128,6 +128,44 @@
 <script setup lang="ts">
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+useSeoMeta({
+  title: "About Me — Aditya Kurnia Saputra | Front-End Developer",
+  description:
+    "Learn more about Aditya Kurnia Saputra, a Front-End Developer & UI/UX Designer based in Indonesia specializing in Vue, Nuxt, TypeScript, and modern web applications.",
+  ogTitle: "About Me — Aditya Kurnia Saputra",
+  ogDescription:
+    "Front-End Developer based in Indonesia, crafting modern web interfaces with focus on UI/UX and performance.",
+  ogImage: "https://kurnia.me/Images/Self2.jpg",
+  ogUrl: "https://kurnia.me/about",
+  twitterCard: "summary_large_image",
+  twitterTitle: "About Me — Aditya Kurnia Saputra",
+  twitterDescription:
+    "Front-End Developer based in Indonesia, crafting modern web interfaces with focus on UI/UX and performance.",
+  twitterImage: "https://kurnia.me/Images/Self2.jpg",
+});
+
+useHead({
+  link: [{ rel: "canonical", href: "https://kurnia.me/about" }],
+  script: [
+    {
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "mainEntity": {
+          "@type": "Person",
+          "name": "Aditya Kurnia Saputra",
+          "jobTitle": "Front-End Developer & UI/UX Designer",
+          "description":
+            "Front-End Developer based in Indonesia, crafting modern web interfaces with a strong focus on UI/UX and seamless user experiences.",
+          "image": "https://kurnia.me/Images/Self2.jpg",
+          "url": "https://kurnia.me/about"
+        }
+      })
+    }
+  ]
+});
 
 gsap.registerPlugin(ScrollTrigger);
 

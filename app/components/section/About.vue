@@ -48,7 +48,7 @@
                 <div class="lg:col-span-5 h-[50vh] lg:h-[80vh] w-full relative z-10 lg:-ml-20">
                     <div
                         class="image-mask w-full h-full overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-700 ease-out">
-                        <img ref="profileImage" src="/Images/Self.jpg" alt="Portrait"
+                        <img ref="profileImage" src="/Images/Self.jpg" alt="Aditya Kurnia Saputra - Front-End Developer & UI/UX Designer"
                             class="w-full h-[120%] object-cover object-center will-change-transform" />
                     </div>
                     <span class="absolute -bottom-8 right-0 font-mono text-xs text-neutral-500 reveal-meta">

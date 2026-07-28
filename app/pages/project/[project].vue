@@ -114,6 +114,51 @@ if (!foundProject) {
 }
 
 const imageUrl = computed(() => foundProject?.image || "");
+
+const fullImageUrl = computed(() => {
+  if (!foundProject?.image) return "https://kurnia.me/Images/og.webp";
+  return foundProject.image.startsWith("http")
+    ? foundProject.image
+    : `https://kurnia.me${foundProject.image}`;
+});
+
+const pageUrl = computed(() => `https://kurnia.me/project/${foundProject.slug}`);
+
+useSeoMeta({
+  title: `${foundProject.title} — Project by Aditya Kurnia Saputra`,
+  description: foundProject.description,
+  ogTitle: `${foundProject.title} — Aditya Kurnia Saputra`,
+  ogDescription: foundProject.description,
+  ogImage: fullImageUrl,
+  ogUrl: pageUrl,
+  twitterCard: "summary_large_image",
+  twitterTitle: `${foundProject.title} — Aditya Kurnia Saputra`,
+  twitterDescription: foundProject.description,
+  twitterImage: fullImageUrl,
+});
+
+useHead({
+  link: [{ rel: "canonical", href: pageUrl }],
+  script: [
+    {
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": foundProject.title,
+        "description": foundProject.description,
+        "image": fullImageUrl.value,
+        "url": pageUrl.value,
+        "author": {
+          "@type": "Person",
+          "name": "Aditya Kurnia Saputra",
+          "url": "https://kurnia.me"
+        },
+        "keywords": (foundProject.stack || []).join(", ")
+      })
+    }
+  ]
+});
 </script>
 
 <style></style>
