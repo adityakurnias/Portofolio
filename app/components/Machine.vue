@@ -55,10 +55,18 @@ for (let i = 0; i < DEBRIS_COUNT; i++) {
 
 const { onBeforeRender } = useLoop();
 
+let winWidth = 1920;
+let winHeight = 1080;
+
+const updateWindowDimensions = () => {
+    winWidth = window.innerWidth || 1920;
+    winHeight = window.innerHeight || 1080;
+};
+
 const pointer = { x: 0, y: 0 };
 const handlePointerMove = (e: PointerEvent) => {
-    pointer.x = (e.clientX / window.innerWidth - 0.5) * 2;
-    pointer.y = (e.clientY / window.innerHeight - 0.5) * 2;
+    pointer.x = (e.clientX / winWidth - 0.5) * 2;
+    pointer.y = (e.clientY / winHeight - 0.5) * 2;
 };
 
 let mm: gsap.MatchMedia;
@@ -105,6 +113,8 @@ onBeforeRender(({ delta, elapsed }) => {
 });
 
 onMounted(() => {
+    updateWindowDimensions();
+    window.addEventListener("resize", updateWindowDimensions);
     pointerModeQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
     pointerParallaxEnabled = pointerModeQuery.matches;
 
@@ -163,6 +173,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
+    window.removeEventListener("resize", updateWindowDimensions);
     window.removeEventListener("pointermove", handlePointerMove);
 
     if (pointerModeQuery && handlePointerModeChange) {

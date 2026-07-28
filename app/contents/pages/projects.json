@@ -5,7 +5,7 @@
       "slug": "smk-plus-pelita-nusantara",
       "title": "SMK Plus Pelita Nusantara Website",
       "description": "Website for SMK Plus Pelita Nusantara Bogor",
-      "image": "/Projects/Beranda-SMK-Plus-Pelita-Nusantara.png",
+      "image": "/Projects/Beranda-SMK-Plus-Pelita-Nusantara.webp",
       "url": "https://smkpluspnb.sch.id",
       "source": "#",
       "stack": [
@@ -21,7 +21,7 @@
       "slug": "synconomics",
       "title": "Synconomics",
       "description": "An ERP platform with an AI Business Mentor that maps the economic ecosystem.",
-      "image": "/Projects/Synconomics.png",
+      "image": "/Projects/Synconomics.webp",
       "url": "https://synconomics.synchronizeteams.com",
       "source": "https://github.com/SynchronizesTeams/Synconomics-Frontend",
       "stack": [
@@ -38,7 +38,7 @@
       "slug": "e-voting",
       "title": "E-Voting SMK Plus Pelita Nusantara",
       "description": "E-Voting for SMK Plus Pelita Nusantara Bogor",
-      "image": "/Projects/Evoting.png",
+      "image": "/Projects/Evoting.webp",
       "url": "https://smkpluspnb.sch.id",
       "source": "https://github.com/DevacctoRPL/E-Voting-Osis",
       "stack": [
@@ -54,7 +54,7 @@
       "slug": "trabsen",
       "title": "Trabsen",
       "description": "Trabsen is a online attendance tracking app simplify the process of recording staff and teacher attendance.",
-      "image": "/Projects/Trabsen.png",
+      "image": "/Projects/Trabsen.webp",
       "url": "https://absensi.smkpluspnb.sch.id",
       "source": "#",
       "stack": [

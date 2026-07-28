@@ -37,9 +37,6 @@
 
     <div ref="menuOverlay"
       class="fixed inset-0 z-50 flex h-screen w-full flex-col items-center justify-center bg-[#0a0a0a] clip-hidden invisible overflow-y-auto">
-      <div
-        class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]">
-      </div>
 
       <div
         class="container mx-auto grid h-full grid-cols-1 gap-12 px-6 py-24 sm:px-8 md:px-12 lg:grid-cols-2 lg:px-20 lg:py-32">
@@ -109,35 +106,45 @@ let splits = [];
 
 const initHoverEffect = () => {
   const elements = document.querySelectorAll(".hover-rotate-text");
+  const queue: { original: Element; clone: Element; element: Element }[] = [];
 
+  // Phase 1: Batch DOM Writes (Remove & Append clones)
   elements.forEach((element) => {
     const existingClone = element.querySelector(".clone-text");
     if (existingClone) existingClone.remove();
 
     const original = element.querySelector("span");
-    const clone = original.cloneNode(true);
+    if (!original) return;
+
+    const clone = original.cloneNode(true) as HTMLElement;
     clone.classList.add("clone-text");
 
     gsap.set(clone, { position: "absolute", top: 0, left: 0, width: "100%", pointerEvents: "none" });
     element.appendChild(clone);
+    queue.push({ original, clone, element });
+  });
 
-    const oSplit = new SplitText(original, { type: "chars" });
-    const cSplit = new SplitText(clone, { type: "chars" });
-    splits.push(oSplit, cSplit);
+  // Phase 2: Batch SplitText & GSAP timeline setup in next frame to prevent interleaved DOM reads/writes
+  requestAnimationFrame(() => {
+    queue.forEach(({ original, clone, element }) => {
+      const oSplit = new SplitText(original, { type: "chars" });
+      const cSplit = new SplitText(clone, { type: "chars" });
+      splits.push(oSplit, cSplit);
 
-    gsap.set(cSplit.chars, { rotationX: -90, opacity: 0, transformOrigin: "50% 50% -20" });
+      gsap.set(cSplit.chars, { rotationX: -90, opacity: 0, transformOrigin: "50% 50% -20" });
 
-    const tl = gsap.timeline({ paused: true, defaults: { duration: 0.4, ease: "power2.inOut" } });
+      const tl = gsap.timeline({ paused: true, defaults: { duration: 0.4, ease: "power2.inOut" } });
 
-    tl.to(oSplit.chars, { rotationX: 90, opacity: 0, stagger: 0.02 })
-      .to(cSplit.chars, { rotationX: 0, opacity: 1, stagger: 0.02 }, 0);
+      tl.to(oSplit.chars, { rotationX: 90, opacity: 0, stagger: 0.02 })
+        .to(cSplit.chars, { rotationX: 0, opacity: 1, stagger: 0.02 }, 0);
 
-    const playTl = () => tl.play();
-    const reverseTl = () => tl.reverse();
+      const playTl = () => tl.play();
+      const reverseTl = () => tl.reverse();
 
-    element.addEventListener("mouseenter", playTl);
-    element.addEventListener("mouseleave", reverseTl);
-    element._gsapHover = { playTl, reverseTl };
+      element.addEventListener("mouseenter", playTl);
+      element.addEventListener("mouseleave", reverseTl);
+      (element as any)._gsapHover = { playTl, reverseTl };
+    });
   });
 };
 

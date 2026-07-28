@@ -5,6 +5,14 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
 
+  experimental: {
+    inlineSSRStyles: true,
+  },
+
+  features: {
+    inlineStyles: true,
+  },
+
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
@@ -88,6 +96,12 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: "canonical", href: "https://kurnia.me" },
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Syncopate:wght@400;700&display=swap",
+        },
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
         { rel: "icon", type: "image/png", href: "/favicon-32x32.png", sizes: "32x32" },
         { rel: "icon", type: "image/png", href: "/favicon-48x48.png", sizes: "48x48" },
