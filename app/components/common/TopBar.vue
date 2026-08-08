@@ -108,7 +108,6 @@ const initHoverEffect = () => {
   const elements = document.querySelectorAll(".hover-rotate-text");
   const queue: { original: Element; clone: Element; element: Element }[] = [];
 
-  // Phase 1: Batch DOM Writes (Remove & Append clones)
   elements.forEach((element) => {
     const existingClone = element.querySelector(".clone-text");
     if (existingClone) existingClone.remove();
@@ -125,7 +124,6 @@ const initHoverEffect = () => {
     queue.push({ original, clone, element });
   });
 
-  // Phase 2: Batch SplitText & GSAP timeline setup in next frame to prevent interleaved DOM reads/writes
   requestAnimationFrame(() => {
     queue.forEach(({ original, clone, element }) => {
       const oSplit = new SplitText(original, { type: "chars", aria: "none" });
