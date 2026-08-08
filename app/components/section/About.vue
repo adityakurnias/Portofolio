@@ -16,7 +16,7 @@
                             </span>
                         </span>
                         <span class="block ml-[8%] lg:ml-[12%]">
-                            <span v-for="(char, i) in 'I Am'" :key="i" class="reveal-char inline-block">
+                            <span v-for="(char, i) in 'Am I'" :key="i" class="reveal-char inline-block">
                                 {{ char === " " ? "\u00A0" : char }}
                             </span>
                         </span>
